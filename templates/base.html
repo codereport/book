@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$if(title)$$title$ — $endif$Combinators and Algorithms</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <nav id="toc" class="toc" aria-label="Table of Contents">
+    <div class="toc-header">Contents</div>
+    $if(toc)$
+    $toc$
+    $endif$
+  </nav>
+
+  <div class="toc-trigger" aria-hidden="true"></div>
+
+  <main class="content">
+    $if(landing)$
+    <section class="landing">
+      <h1 class="book-title"><b>Combinators <br>& Algorithms</b></h1>
+      <p class="author">Conor Shakory</p>
+      <p class="copyright">© 2026</p>
+    </section>
+    $endif$
+
+    <article class="body">
+      $body$
+    </article>
+  </main>
+
+  <script src="assets/js/toc.js"></script>
+</body>
+</html>

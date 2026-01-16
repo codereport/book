@@ -1,0 +1,318 @@
+/* Linux Libertine font - using hosted version */
+@import url('https://fonts.cdnfonts.com/css/linux-libertine');
+
+/* Alternative: self-host the font
+@font-face {
+  font-family: 'Linux Libertine';
+  src: url('../fonts/LinLibertine_R.woff2') format('woff2'),
+       url('../fonts/LinLibertine_R.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Linux Libertine';
+  src: url('../fonts/LinLibertine_RB.woff2') format('woff2'),
+       url('../fonts/LinLibertine_RB.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Linux Libertine';
+  src: url('../fonts/LinLibertine_RI.woff2') format('woff2'),
+       url('../fonts/LinLibertine_RI.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+*/
+
+:root {
+  --text-color: #1a1a1a;
+  --bg-color: #fffff8;
+  --toc-bg: #f5f5ef;
+  --toc-shadow: rgba(0, 0, 0, 0.08);
+  --link-color: #8b4513;
+  --link-hover: #5d2e0a;
+  --border-color: #e0e0d8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  font-family: 'Linux Libertine', 'Libertinus Serif', 'Palatino Linotype', Palatino, Georgia, serif;
+  line-height: 1.65;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Landing Page ===== */
+.landing {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.book-title {
+  font-size: 4.5rem;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+  line-height: 1.15;
+}
+
+.author {
+  font-size: 1.8rem;
+  font-style: normal;
+  margin-bottom: 0.5rem;
+}
+
+.copyright {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 2.5rem;
+}
+
+/* ===== Main Content ===== */
+.content {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+
+.body:empty {
+  display: none;
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  line-height: 1.3;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.6rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+p {
+  margin-bottom: 1.2rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+a:hover {
+  color: var(--link-hover);
+  border-bottom-color: var(--link-hover);
+}
+
+blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--border-color);
+  font-style: italic;
+  color: #444;
+}
+
+code {
+  font-family: 'Linux Libertine Mono', 'Courier New', monospace;
+  font-size: 0.9em;
+  background: #f0f0e8;
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+pre {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: #f0f0e8;
+  border-radius: 4px;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+ul, ol {
+  margin: 1.2rem 0;
+  padding-left: 1.8rem;
+}
+
+li {
+  margin-bottom: 0.4rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 3rem 0;
+}
+
+/* ===== Table of Contents - Hidden Sidebar ===== */
+.toc-trigger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  z-index: 99;
+}
+
+.toc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background: var(--toc-bg);
+  box-shadow: 4px 0 20px var(--toc-shadow);
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.35s ease;
+  z-index: 100;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+}
+
+.toc.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toc-header {
+  font-size: 1.1rem;
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc li {
+  margin-bottom: 0.6rem;
+}
+
+.toc a {
+  color: var(--text-color);
+  font-size: 0.95rem;
+  display: block;
+  padding: 0.25rem 0;
+  border-bottom: none;
+}
+
+.toc a:hover {
+  color: var(--link-color);
+}
+
+.toc ul ul {
+  margin-left: 1rem;
+  margin-top: 0.4rem;
+}
+
+.toc ul ul a {
+  font-size: 0.88rem;
+  color: #555;
+}
+
+/* ===== Print Styles for PDF ===== */
+@media print {
+  .toc, .toc-trigger {
+    display: none !important;
+  }
+  
+  body {
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+  
+  .content {
+    max-width: none;
+    padding: 0;
+  }
+  
+  .landing {
+    min-height: auto;
+    page-break-after: always;
+    padding: 4in 0;
+  }
+  
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+  
+  pre, blockquote {
+    page-break-inside: avoid;
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  html {
+    font-size: 16px;
+  }
+  
+  .book-title {
+    font-size: 2.8rem;
+  }
+  
+  .author {
+    font-size: 1.4rem;
+  }
+  
+  .content {
+    padding: 2rem 1rem 4rem;
+  }
+  
+  .toc {
+    width: 85%;
+  }
+}
